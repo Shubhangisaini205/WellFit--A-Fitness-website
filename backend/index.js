@@ -1,5 +1,6 @@
 const express = require("express");
 const { connection } = require("./config/db");
+const { workoutRouter } = require("./routes/WorkoutRoutes");
 const app = express();
 app.use(express.json())
 
@@ -8,7 +9,7 @@ app.get("/",(req,res)=>{
  res.send("OK")
 })
 
-
+app.use("/workouts",workoutRouter);
 app.listen(8080, async()=>{
   
     try {
