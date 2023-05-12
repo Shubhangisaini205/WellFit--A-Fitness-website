@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors')
-const { connection } = require("./config/db");
+const { connection } = require("./config/db")
+const { workoutRouter } = require("./routes/WorkoutRoutes");
 const {UserRouter} = require("./routes/UserRoutes")
 const {AuthMiddleware}= require("./middlewares/AuthMiddleware")
 const app = express();
@@ -18,7 +19,7 @@ app.get("/dummy",(req,res)=>{
 })
 
 
-
+app.use("/workouts",workoutRouter);
 app.listen(8080, async()=>{
   
     try {
