@@ -101,19 +101,25 @@ function Navbar() {
       </div>
       <div
         style={{ display: ison ? "block" : "none" }}
-        className="absolute top-20 right-5 border-2 w-48 p-4"
+        className="absolute top-20 right-5 border-2 w-full bg-white p-8 rounded-lg "
       >
         <a href="#">
-          <p>Home</p>
+          <p className="p-2 font-bold">Home</p>
         </a>
         <a href="#">
-          <p>About</p>
+          <p className="p-2 font-bold">Blogs</p>
         </a>
         <a href="#">
-          <p>Services</p>
+          <p className="p-2 font-bold">Nutrition</p>
         </a>
         <a href="#">
-          <p>Contact</p>
+          <p className="p-2 font-bold">Workout</p>
+        </a>
+        <a href="#">
+          <p className="p-2 font-bold">About</p>
+        </a>
+        <a href="#">
+          <p className="p-2 font-bold">Contact</p>
         </a>
       </div>
     </nav>
