@@ -4,7 +4,7 @@ function Navbar() {
   const [ison, setIsOn] = useState<boolean>(false);
 
   return (
-    <nav className="sticky top-0  border-gray-200 bg-[#0099CC] ">
+    <nav className="sticky top-0  border-gray-200 bg-teal-500 z-10 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" className="flex items-center">
           <img
@@ -64,7 +64,7 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a href="#" className="text-white">
+              <a href="/nutrition" className="text-white">
               Nutrition
               </a>
             </li>

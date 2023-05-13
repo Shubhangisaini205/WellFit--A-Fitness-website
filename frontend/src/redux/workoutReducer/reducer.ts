@@ -1,5 +1,5 @@
 import { GET_REQUEST, GET_REQUEST_FAILURE, GET_REQUEST_SUCCESS, WorkoutActionTypes } from "./actionTypes"
-import { PayloadAction } from "@reduxjs/toolkit";
+// import { PayloadAction } from "@reduxjs/toolkit";
 
 interface Workout { id: Number, exercise_name: String, videoURL: string[], steps: string[], Category: String, Difficulty: String, Force: String, Grips: String, target: Object, youtubeURL: String, details: String }
 
@@ -14,7 +14,7 @@ const initialState: initState = {
     workouts: []
 }
 
-export const reducer = (state = initialState, action: PayloadAction<any>) => {
+export const reducer = (state = initialState,action:WorkoutActionTypes) => {
     switch (action.type) {
         case GET_REQUEST:
             return { ...state, isLoading: true }
