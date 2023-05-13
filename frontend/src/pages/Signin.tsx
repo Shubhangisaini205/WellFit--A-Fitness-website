@@ -24,11 +24,13 @@ const Signin: React.FC = () => {
         axios.post(`http://localhost:8080/user/login`, formdata)
             .then((res) => {
                 console.log(res.data)
+                localStorage.setItem("token",res.data.token)
+                localStorage.setItem("userDetails",JSON.stringify(res.data.userDetails))
                 alert(res.data.msg)
             })
     }
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex items-center justify-center min-h-screen bg-gray-100 text-black">
             <div
                 className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0"
             >
