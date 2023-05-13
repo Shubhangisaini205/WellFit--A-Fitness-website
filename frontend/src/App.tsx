@@ -4,19 +4,23 @@ import React from 'react';
 import './App.css';
 import Allroutes from './routes/Allroutes';
 import Nutriton from './pages/Nutrition';
-import Home from './pages/Home';
+import Workout from './pages/Exercise';
+import Plan from './pages/Plan';
+import ExerciseInputForm from './pages/ExerciseInputForm';
 import Navbar from './components/Navbar';
-import Workout from './pages/Workout';
-import ExerciseUI from './pages/ExerciseUI';
+
 
 function App() {
   return (
     <div className="App">
-    
-     {/* <Allroutes/> */}
-  {/* <ExerciseUI/> */}
+
+   
   <Nutriton/>
     
+
+    <Navbar/>
+    <Allroutes/>
+
     </div>
   );
 }
