@@ -3,7 +3,8 @@ const cors = require('cors')
 const { connection } = require("./config/db")
 const { workoutRouter } = require("./routes/WorkoutRoutes");
 const {UserRouter} = require("./routes/UserRoutes")
-const {AuthMiddleware}= require("./middlewares/AuthMiddleware")
+const {AuthMiddleware}= require("./middlewares/AuthMiddleware");
+const { exerciseRouter } = require("./routes/ExerciseRoute");
 const app = express();
 app.use(cors())
 app.use(express.json())
@@ -12,14 +13,9 @@ app.get("/",(req,res)=>{
  res.send("OK")
 })
 app.use("/user",UserRouter)
-
-app.use(AuthMiddleware)
-app.get("/dummy",(req,res)=>{
-   res.send("checking") 
-})
-
-
 app.use("/workouts",workoutRouter);
+app.use(AuthMiddleware)
+app.use("/exercise",exerciseRouter);
 app.listen(8080, async()=>{
   
     try {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function Navbar() {
   const [ison, setIsOn] = useState<boolean>(false);
+  const token=localStorage.getItem("token");
 
   return (
     <nav className="sticky top-0  border-gray-200 bg-[#0099CC] ">
@@ -17,12 +18,24 @@ function Navbar() {
           </span>
         </a>
         <div className="flex md:order-2">
-          <button
+          {token?<button
+            type="button"
+            onClick={()=>localStorage.clear()}
+            className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-10  bg-black dark:focus:ring-blue-800"
+          >
+            Sign Out
+          </button>:<button
+            type="button"
+            className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-10  bg-black dark:focus:ring-blue-800"
+          >
+            Sign In
+          </button>}
+          {!token?<button
             type="button"
             className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 bg-black dark:focus:ring-blue-800"
           >
-            Signup for free
-          </button>
+            Sign up
+          </button>:null}
           <button
             onClick={() => setIsOn(!ison)}
             data-collapse-toggle="navbar-cta"
