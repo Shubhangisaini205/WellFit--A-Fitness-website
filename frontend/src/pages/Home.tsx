@@ -8,7 +8,6 @@ import Footer from '../components/Footer'
 function Home() {
   return (
     <div>
-  <Navbar/>
   <Banner/>
 {/* lg:w-1/2 mt-5 md:w-full sm:w-full */}
     <div className='flex flex-col md:flex-row sm:flex-row w-4/5 m-auto gap-5'>
