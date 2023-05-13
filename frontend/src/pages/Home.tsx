@@ -56,6 +56,15 @@ function Home() {
     <div className='flex ' style={{justifyContent:"space-around"}}>
       <div  className='w-1/2 '>
         <img className='w-2/3 block m-auto' src="https://cdn1.cronometer.com/webflow/crono-hero-img-22x-1-p-1600.png" alt="" />
+        <p>Fitness Equipment and Healthy Food Isolated on White </p>
+      </div>
+      <div  className='w-1/2 '>
+        <img className='w-2/3 block m-auto' src="https://cdn1.cronometer.com/webflow/crono-hero-img-22x-1-p-1600.png" alt="" />
+        <p>achieve your diet and fitness resolutions for 2022</p>
+      </div>
+      <div  className='w-1/2 '>
+        <img className='w-2/3 block m-auto' src="https://cdn1.cronometer.com/webflow/crono-hero-img-22x-1-p-1600.png" alt="" />
+        <p>It is health that is real wealth and not pieces of gold and silver.</p>
       </div>
       <div >
         
