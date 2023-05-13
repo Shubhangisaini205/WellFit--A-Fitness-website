@@ -1,16 +1,24 @@
+
+import './App.css'
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import UserPage from './pages/UserPage';
 import Home from './pages/Home';
+import Allroutes from './routes/Allroutes';
+
+
+import Nutriton from './pages/Nutrition';
+import Addworkout from './components/Addworkout';
+import Yoga from './components/Yoga';
 
 function App() {
   return (
     <div className="App">
-      
-     {/* <h1 className='text-5xl'>Hello </h1> */}
-     <UserPage/>
-     {/* <Home/> */}
+     
+     {/* <Nutriton/> */}
+{/* <UserPage/> */}
+<Addworkout/>
+{/* <Yoga/> */}
     </div>
   );
 }
