@@ -34,6 +34,7 @@ const Blogs = () => {
     <div className='w-3/5'>
         <h1 className='font-bold text-3xl mb-5'>Start accurately tracking body measurements to highlight your progress</h1>
         <p>Eating a good breakfast is one of the foundational elements of long-term weight loss. This is mainly because eating food an hour or two after waking up helps maintain good gut and metabolic health.<span id="dots">...</span><span id="more">Your metabolism plays a crucial role in sustained weight loss. So, making sure that it functions smoothly is one of the simplest yet most effective ways to shed unwanted weight over time. Plus, the right meal will keep you fuller for longer throughout the day and encourage you to resist unnecessary snacking.</span></p>
+        {/* ajnsdfcj */}
 
 <button onClick={myFunction} id="myBtn">Read more</button>
 
