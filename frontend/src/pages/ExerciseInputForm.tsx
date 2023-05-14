@@ -57,24 +57,30 @@ export default function ExerciseInputForm() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         setSearchParams(formdata)
-        console.log(obj)
-        axios.get("http://localhost:8080/workouts", { headers, params })
+        console.log(obj, "x")
+        axios.get("https://curious-bat-jewelry.cyclic.app/workouts", { headers, params })
             .then((res) => {
-                console.log(res);
+
+                for (let i = 0; i < res.data.length; i++) {
+                    delete res.data[i]["_id"]
+                    delete res.data[i]["id"]
+                }
+
+                console.log(res, "y");
                 if (res.data.msg == "Please login to access this function!!!") {
                     navigate("/signin")
                     return (
                         showToastErrorMessage()
                     )
                 }
-                fetch("http://localhost:8080/exercise/add", {
+                fetch("https://curious-bat-jewelry.cyclic.app/exercise/add", {
                     method: "POST",
                     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                     body: JSON.stringify(res.data)
                 })
                     .then((res) => res.json())
                     .then((res) => {
-                        // console.log(res, "POST SUCCESFULL");
+                        console.log(res, "POST SUCCESFULL");
                         showToastMessage()
                         navigate("/exercise")
                     })

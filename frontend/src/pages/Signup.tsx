@@ -49,7 +49,7 @@ const Signup: React.FC = () => {
         // dispatch(RegisterUser(formdata));
         // console.log(formdata)
 
-        axios.post(`http://localhost:8080/user/register`, formdata)
+        axios.post(`https://curious-bat-jewelry.cyclic.app/user/register`, formdata)
             .then((res) => {
                 console.log(res.data)
                 showToastMessage()

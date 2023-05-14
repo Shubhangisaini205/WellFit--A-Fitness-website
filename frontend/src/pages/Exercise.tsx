@@ -25,7 +25,7 @@ function Exercise() {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
-        axios.get("http://localhost:8080/exercise", {
+        axios.get("https://curious-bat-jewelry.cyclic.app/exercise", {
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
         })
             .then((res) => {
