@@ -197,14 +197,14 @@ const NutritientsIntake: React.FC = () => {
         <p className="w-96 m-auto text-xl leading-8 ">
           Following are general recommendations for nutrient intake in adults, including carbohydrates, fats, and proteins. If you have any health issues, it is important to consult your doctor before making any dietary changes based on these guidelines.
         </p>
-        <img  className='w-96 ml-20 rounded-xl' src="https://media.istockphoto.com/id/1384900198/photo/vegan-food-colorful-fresh-vegetables-and-fruits-and-dried-legumes-in-a-row-on-white.jpg?b=1&s=170667a&w=0&k=20&c=T1sKSXgAPlj5OSkxf0ukrR5tPIjDHmCiifzwy4PtA0U=" alt="" />
+        <img className='w-96 ml-20 rounded-xl' src="https://media.istockphoto.com/id/1384900198/photo/vegan-food-colorful-fresh-vegetables-and-fruits-and-dried-legumes-in-a-row-on-white.jpg?b=1&s=170667a&w=0&k=20&c=T1sKSXgAPlj5OSkxf0ukrR5tPIjDHmCiifzwy4PtA0U=" alt="" />
       </div>
 
       <div className="lg:w-full md:w-full sm:w-1/4 sm:py-32 rounded-lg shadow-md p-4 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 ">
 
         {data.map((item, i) => {
           return <div key={i} className='sm:w-1/2 lg:w-full md:w-full text-white '>
- <h1 className="text-3xl font-bold tracking-tight text-sky-800 sm:text-4xl text-center text-white">{item.category}</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-sky-800 sm:text-4xl text-center text-white">{item.category}</h1>
             <Chart
               options={item.options}
               series={item.series}
@@ -226,7 +226,7 @@ const NutritientsIntake: React.FC = () => {
                 <span className="text-sm font-medium text-white">Fats</span>
               </div>
             </div>
-           
+
           </div>
 
         })}

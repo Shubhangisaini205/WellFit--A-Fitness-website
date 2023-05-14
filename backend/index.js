@@ -13,8 +13,9 @@ app.get("/",(req,res)=>{
  res.send("OK")
 })
 app.use("/user",UserRouter)
-app.use("/workouts",workoutRouter);
+
 app.use(AuthMiddleware)
+app.use("/workouts",workoutRouter);
 app.use("/exercise",exerciseRouter);
 app.listen(8080, async()=>{
   

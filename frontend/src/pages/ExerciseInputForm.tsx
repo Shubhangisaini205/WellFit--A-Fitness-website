@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // interface ExerciseForm {
 //     target:string,
 //     difficulty:string,
@@ -10,57 +11,83 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 export default function ExerciseInputForm() {
-    const [searchParams,setSearchParams]=useSearchParams();
-    const naviaget=useNavigate();
-    const token=localStorage.getItem("token");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
     // let userDetails=(localStorage.getItem("userDetails"));
     // if(userDetails){
     //     userDetails=JSON.parse(userDetails)
     //     const {_id,name}=userDetails
     // }
-    
+
     // const [category,setCategory]=useState(searchParams.get("category") || "")
     // const [target,setTarget]=useState(searchParams.get("target") || "")
     // const [difficulty,setDifficulty]=useState(searchParams.get("difficulty") || "")
     const [formdata, setFormdata] = useState({
-        target:"",
-        difficulty:"",
-        category:""
+        target: "",
+        difficulty: "",
+        category: ""
     });
-    let obj={
-        target:searchParams.get("target"),
-        difficulty:searchParams.get("difficulty"),
-        category:searchParams.get("category")
+    let obj = {
+        target: searchParams.get("target"),
+        difficulty: searchParams.get("difficulty"),
+        category: searchParams.get("category")
     }
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormdata({ ...formdata, [name]: value });
     };
-    const handleSubmit=(e: FormEvent)=>{
+    const headers: AxiosRequestConfig['headers'] = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    };
+    const showToastErrorMessage = () => {
+        toast.error('Please login to access this function!!!', {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
+    const showToastMessage = () => {
+        toast.success('Exercise Added!!', {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
+
+    const params: AxiosRequestConfig['params'] = obj
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         setSearchParams(formdata)
         console.log(obj)
-        axios.get("http://localhost:8080/workouts",{params:obj})
-        .then((res)=>{
-            console.log(res);
-            fetch("http://localhost:8080/exercise/add",{
-                method:"POST",
-                headers:{"Content-Type":"application/json", Authorization:`Bearer ${token}`},
-                body:JSON.stringify(res.data)
+        axios.get("http://localhost:8080/workouts", { headers, params })
+            .then((res) => {
+                console.log(res);
+                if (res.data.msg == "Please login to access this function!!!") {
+                    navigate("/signin")
+                    return (
+                        showToastErrorMessage()
+                    )
+                }
+                fetch("http://localhost:8080/exercise/add", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                    body: JSON.stringify(res.data)
+                })
+                    .then((res) => res.json())
+                    .then((res) => {
+                        // console.log(res, "POST SUCCESFULL");
+                        showToastMessage()
+                        navigate("/exercise")
+                    })
+                    .catch((err) => {
+
+                        console.log(err, "ERROR");
+                    })
             })
-            .then((res)=>res.json())
-            .then((res)=>{
-                console.log(res, "POST SUCCESFULL");
-                naviaget("/workout")
+            .catch((err) => {
+                alert(err.response.data.msg)
+                // console.log(err)
+                console.log(err, "CATCH ERROR");
             })
-            .catch((err)=>{
-                console.log(err,"ERROR");
-            })
-        })
-        .catch((err)=>{
-            console.log(err,"CATCH ERROR");
-        })
     }
     return (
         <>
@@ -75,7 +102,7 @@ export default function ExerciseInputForm() {
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="difficulty" className="block text-sm font-medium leading-6 text-white">
-                               Level of Difficulty
+                                Level of Difficulty
                             </label>
                             <div className="py-2">
                                 <select
@@ -155,6 +182,7 @@ export default function ExerciseInputForm() {
                     </form>
                 </div>
             </div>
+            <ToastContainer autoClose={2000} />
         </>
     )
 }

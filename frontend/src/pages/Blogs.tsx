@@ -100,9 +100,10 @@ Boiled or scrambled are the healthiest ways to prepare eggs (as opposed to fried
 </button>
 
     </div>
-    <Footer/>
+  
     </div>
   )
+
 }
 
 export default Blogs

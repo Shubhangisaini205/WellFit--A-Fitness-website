@@ -8,7 +8,6 @@ import Footer from '../components/Footer'
 function Home() {
   return (
     <div>
-
   <Banner/>
 {/* lg:w-1/2 mt-5 md:w-full sm:w-full */}
     <div className='flex flex-col md:flex-row sm:flex-row w-4/5 m-auto gap-5'>
@@ -20,9 +19,10 @@ function Home() {
             <li>At-center group classes</li>
             <li>All ELITE & PRO gyms</li>
             <li>At-home live workouts</li>
-          
+
+          </div>
         </div>
-      </div>
+<!--       </div> -->
       <div className='text-white'>
         <img src="https://cdn-images.cure.fit/www-curefit-com/image/upload/c_fill,w_404,q_auto:eco,dpr_2,f_auto,fl_progressive//image/test/introducting-cult-pass/icp_cg.png" alt="" />
         <div className='text-white lg:text-left md:text-center sm:text-center'>
@@ -30,8 +30,10 @@ function Home() {
         
             <li>All PRO gyms</li>
             <li>2 Sessions/m at ELITE gyms & group classes</li>
+
             <li>At-home live workouts</li>
-        
+
+          </div>
         </div>
       </div>
       <div className='text-white'>
@@ -46,7 +48,9 @@ function Home() {
             <li>Celebrity Workouts</li>
             <li>Goal-based Workouts and Meditation Sesssions</li>
        
+
         </div>
+
       </div>
       
     </div>
@@ -65,9 +69,13 @@ function Home() {
       <div  className='lg:w-1/2 mt-5 md:w-full sm:w-full'>
         <img className='w-2/3 block m-auto' src="https://images.pexels.com/photos/4374580/pexels-photo-4374580.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
         <p className='m-5 font-bold'>It is health that is real wealth and not pieces of gold and silver.</p>
+
       </div>
-      <div >
-        
+      <div>
+        <h1 className='text-2xl m-4 text-white font-bold text-center'>Sync with apps and device</h1>
+        <div className='w-full m-auto'>
+          <img className='w-10/12 m-auto' src="https://cdn1.cronometer.com/webflow/cronometer-devices-3-p-1080.png" alt="" />
+        </div>
       </div>
     </div>
     </div>
@@ -145,10 +153,21 @@ function Home() {
   </div>
 </div>
 
-<Footer/>
+
+        </div>
+        <div className='flex  m-10'>
+          <div className='mr-10'  >
+            <img className='rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_tszMw5iX_JtnX0UfKSftyIfMck3nsAOMBDQII6AXzQ&usqp=CAU&ec=48600112" alt="" />
+          </div>
+          <div>
+            <h1 className='text-white'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias cumque, molestias autem eaque eligendi quasi libero facere, beatae nobis quo labore architecto. Optio eaque odio, possimus ex animi fuga aperiam. Totam natus minus voluptas saepe error amet distinctio provident? Facilis sunt deserunt aut ipsum quam, atque sit molestiae eveniet quia.</h1>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
 export default Home
+
 
