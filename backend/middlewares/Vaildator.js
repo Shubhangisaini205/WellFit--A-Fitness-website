@@ -5,7 +5,7 @@
       res.status(400).send({
          "err":"Fill all the details"
       })
-   }else if(data.age<=16||data.age>=60){
+   }else if(data.age<16||data.age>=60){
       res.status(400).send({"err":"You are not eligible to create account because of your age"})
    }else {
       next();

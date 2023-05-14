@@ -12,13 +12,13 @@ const AuthMiddleware=(req,res,next)=>{
             console.log(req.body)
             next()
         }else{
-            res.status(400).send({"msg":"Please login to access this function"})
+            res.status(400).send({"msg":"Please login to access this function!!!"})
         }
     } catch (error) {
-        res.send({"err":error.message})
+        res.send({"msg":"Please login to access this function!!!"})
     }
   }else{
-    res.status(400).send({"msg":"Please login to access this function"})
+    res.status(400).send({"msg":"Please login to access this function!!!"})
   }
 }
 

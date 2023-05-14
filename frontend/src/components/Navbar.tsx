@@ -1,8 +1,31 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Navbar() {
+  const [toggle, setToggle] = useState<boolean>(false)
   const [ison, setIsOn] = useState<boolean>(false);
-  const token=localStorage.getItem("token");
+  const location = useLocation()
+  const navigate = useNavigate()
+  let loggeduser = localStorage.getItem("wellfituser")
+  let isAuth = localStorage.getItem("auth") || false;
+  const showToastMessage = () => {
+    toast.success('Successfully Logged out!!', {
+      position: toast.POSITION.TOP_CENTER
+    });
+  };
+  const handlelogout = () => {
+    localStorage.clear()
+    setToggle(!toggle)
+    showToastMessage()
+    navigate("/")
+
+  }
+
+
+  useEffect(() => {
+
+  }, [location.search])
 
   return (
     <nav className="sticky top-0  border-gray-200 bg-teal-500 z-10 ">
@@ -14,28 +37,39 @@ function Navbar() {
             alt="Flowbite Logo"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            FitZone
+            WellFit
           </span>
         </a>
         <div className="flex md:order-2">
-          {token?<button
-            type="button"
-            onClick={()=>localStorage.clear()}
-            className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-10  bg-black dark:focus:ring-blue-800"
-          >
-            Sign Out
-          </button>:<button
-            type="button"
-            className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-10  bg-black dark:focus:ring-blue-800"
-          >
-            Sign In
-          </button>}
-          {!token?<button
-            type="button"
-            className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 bg-black dark:focus:ring-blue-800"
-          >
-            Sign up
-          </button>:null}
+          {isAuth ?
+            <div>
+              <span className="text-black font-bold mr-5 text-xl">Hi, {loggeduser}</span>
+              <button
+                type="button"
+                onClick={handlelogout}
+                className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-10  bg-black dark:focus:ring-blue-800"
+              >
+                Sign Out
+              </button>
+            </div>
+            :
+            <Link to="/signin">
+              <button
+                type="button"
+                className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-10  bg-black dark:focus:ring-blue-800"
+              >
+                Sign In
+              </button>
+            </Link>}
+          {!isAuth ?
+            <Link to="/signup">
+              <button
+                type="button"
+                className="text-white bg-black-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 bg-black dark:focus:ring-blue-800"
+              >
+                Sign up
+              </button>
+            </Link> : null}
           <button
             onClick={() => setIsOn(!ison)}
             data-collapse-toggle="navbar-cta"
@@ -70,7 +104,7 @@ function Navbar() {
                 Home
               </a>
             </li>
-            
+
             <li>
               <a href="/blogs" className="text-white">
                 Blogs
@@ -78,24 +112,32 @@ function Navbar() {
             </li>
             <li>
               <a href="/nutrition" className="text-white">
-              Nutrition
+                Nutrition
+              </a>
+            </li>
+            {isAuth ?
+              <li>
+                <a href="/exercise" className="text-white">
+                  Exercises
+                </a>
+              </li> : null
+            }
+
+            <li>
+              <a href="/customexercise" className="text-white">
+                Workouts
               </a>
             </li>
             <li>
-              <a href="#" className="text-white">
-                Workout
+              <a href="/yoga" className="text-white">
+                Yoga
               </a>
             </li>
-            <li>
-              <a href="#" className="text-white">
-              About
-              </a>
-            </li>
-            <li>
+            {/* <li>
               <a href="#" className="text-white">
                 Contact
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
@@ -122,6 +164,7 @@ function Navbar() {
           <p className="p-2 font-bold">Contact</p>
         </a>
       </div>
+      <ToastContainer autoClose={2000} />
     </nav>
   );
 }
