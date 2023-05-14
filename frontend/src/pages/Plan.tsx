@@ -155,7 +155,7 @@ function Plan() {
                 <h1 className="text-3xl font-bold my-8">Day-1</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {day1.map((el, i) => (
-                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{backgroundImage:'url("https://images.pexels.com/photos/669584/pexels-photo-669584.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize:'cover'}}>
+                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{ backgroundImage: 'url("https://images.pexels.com/photos/669584/pexels-photo-669584.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize: 'cover' }}>
                             <h2 className="text-xl font-bold mb-4">Exercise No: {i + 1}</h2>
                             <h3 className="text-lg font-bold mb-2">Exercise Name: {el.name}</h3>
                             <details className="mb-2" open>
@@ -180,7 +180,7 @@ function Plan() {
                 <h1 className="text-3xl font-bold my-8">Day-2</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {day2.map((el, i) => (
-                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{backgroundImage:'url("https://images.pexels.com/photos/8472147/pexels-photo-8472147.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize:'cover'}}>
+                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{ backgroundImage: 'url("https://images.pexels.com/photos/8472147/pexels-photo-8472147.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize: 'cover' }}>
                             <h2 className="text-xl font-bold mb-4">Exercise No: {i + 1}</h2>
                             <h3 className="text-lg font-bold mb-2">Exercise Name: {el.name}</h3>
                             <details className="mb-2" open>
@@ -205,7 +205,7 @@ function Plan() {
                 <h1 className="text-3xl font-bold my-8">Day-3</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {day3.map((el, i) => (
-                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{backgroundImage:'url("https://images.pexels.com/photos/4753898/pexels-photo-4753898.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize:'cover'}}>
+                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{ backgroundImage: 'url("https://images.pexels.com/photos/4753898/pexels-photo-4753898.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize: 'cover' }}>
                             <h2 className="text-xl font-bold mb-4">Exercise No: {i + 1}</h2>
                             <h3 className="text-lg font-bold mb-2">Exercise Name: {el.name}</h3>
                             <details className="mb-2" open>
@@ -230,7 +230,7 @@ function Plan() {
                 <h1 className="text-3xl font-bold my-8">Day-4</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {day4.map((el, i) => (
-                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{backgroundImage:'url("https://images.pexels.com/photos/8170745/pexels-photo-8170745.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize:'cover'}}>
+                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{ backgroundImage: 'url("https://images.pexels.com/photos/8170745/pexels-photo-8170745.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize: 'cover' }}>
                             <h2 className="text-xl font-bold mb-4">Exercise No: {i + 1}</h2>
                             <h3 className="text-lg font-bold mb-2">Exercise Name: {el.name}</h3>
                             <details className="mb-2" open>
@@ -255,7 +255,7 @@ function Plan() {
                 <h1 className="text-3xl font-bold my-8">Day-5</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {day5.map((el, i) => (
-                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{backgroundImage:'url("https://images.pexels.com/photos/8472147/pexels-photo-8472147.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize:'cover'}}>
+                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{ backgroundImage: 'url("https://images.pexels.com/photos/8472147/pexels-photo-8472147.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize: 'cover' }}>
                             <h2 className="text-xl font-bold mb-4">Exercise No: {i + 1}</h2>
                             <h3 className="text-lg font-bold mb-2">Exercise Name: {el.name}</h3>
                             <details className="mb-2" open>
@@ -280,7 +280,7 @@ function Plan() {
                 <h1 className="text-3xl font-bold my-8">Day-6</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {day6.map((el, i) => (
-                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{backgroundImage:'url("https://images.pexels.com/photos/4753898/pexels-photo-4753898.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize:'cover'}}>
+                        <div key={i} className="border-2 border-cyan-500 rounded-md p-4" style={{ backgroundImage: 'url("https://images.pexels.com/photos/4753898/pexels-photo-4753898.jpeg?auto=compress&cs=tinysrgb&w=600")', backgroundSize: 'cover' }}>
                             <h2 className="text-xl font-bold mb-4">Exercise No: {i + 1}</h2>
                             <h3 className="text-lg font-bold mb-2">Exercise Name: {el.name}</h3>
                             <details className="mb-2" open>
@@ -299,7 +299,7 @@ function Plan() {
                     ))}
                 </div>
             </div>
-            <Footer />
+
         </div>
     )
 };

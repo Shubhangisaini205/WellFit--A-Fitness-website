@@ -38,7 +38,7 @@ const Signin: React.FC = () => {
     };
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        axios.post(`http://localhost:8080/user/login`, formdata)
+        axios.post(`https://curious-bat-jewelry.cyclic.app/user/login`, formdata)
             .then((res) => {
                 console.log(res.data)
                 localStorage.setItem("token", res.data.token)

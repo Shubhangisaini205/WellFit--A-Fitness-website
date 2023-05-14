@@ -18,11 +18,11 @@ function Allroutes() {
       <Route path="/signup" element={<Signup />} />
       <Route path='/' element={<Home />} />
       <Route path='/yoga' element={<Yoga />} />
-      <Route path='/blogs' element={<PrivateRoute><Blogs /></PrivateRoute>} />
+      <Route path='/blogs' element={<Blogs />} />
       <Route path="/nutrition" element={<Nutriton />} />
       <Route path='/customexercise' element={<ExerciseInputForm />} />
       <Route path='/exercise' element={<Exercise />} />
-      <Route path='/plan' element={<Plan />} />
+      <Route path='/plan' element={<PrivateRoute><Plan /></PrivateRoute>} />
     </Routes>
   )
 }
