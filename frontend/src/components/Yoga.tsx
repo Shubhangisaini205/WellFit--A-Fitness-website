@@ -4,17 +4,24 @@ import React, { useEffect } from 'react'
 // import Pan3 from "../images/pan3.mp4"
 // import Pan4 from "../images/pan4.mp4"
 
+
+import * as Aos from "aos";  
+import "aos/dist/aos.css";
+
 // import Aos from "aos"
 // import "aos/dist/aos.css"
+
 
  
 
 
-
+ 
 const Yoga = () => {
-    // useEffect(()=>{
-    //     Aos.init({duration:1000})
-    // },[])
+
+    useEffect(()=>{ 
+        Aos.init({duration:1000})
+    },[])
+
     return (
         <div>
 <div className="flex flex-col lg:flex-row items-center justify-between mx-4 lg:mx-10 lg:my-20">
