@@ -4,15 +4,16 @@ import Pan2 from "../images/pan2.mp4"
 import Pan3 from "../images/pan3.mp4"
 import Pan4 from "../images/pan4.mp4"
 
-import Aos from "aos"
-import "aos/dist/aos.css"
+import * as Aos from "aos";  
+import "aos/dist/aos.css";
+
 
  
 
 
-
+ 
 const Yoga = () => {
-    useEffect(()=>{
+    useEffect(()=>{ 
         Aos.init({duration:1000})
     },[])
     return (

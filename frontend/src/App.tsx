@@ -8,6 +8,10 @@ import Workout from './pages/Exercise';
 import Plan from './pages/Plan';
 import ExerciseInputForm from './pages/ExerciseInputForm';
 import Navbar from './components/Navbar';
+import Yoga from './components/Yoga';
+import Addworkout from './components/Addworkout';
+import UserPage from './pages/UserPage';
+import { Chatbot } from './components/Chatbot';
 
 
 function App() {
@@ -19,7 +23,7 @@ function App() {
     
 
     <Navbar/>
-    <Allroutes/>
+
 
     </div>
   );

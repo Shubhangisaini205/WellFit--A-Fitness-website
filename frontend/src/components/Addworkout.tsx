@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
-interface IExercise {
-  [key: string]: number
-}
+// interface IExercise {
+//   [key: string]: number
+// }
+
+
+import bot from "../images/chatbot.png"
+import { useNavigate } from 'react-router-dom'
 const Addworkout = () => {
+  const navigate=useNavigate()
   const [running,setrunning]=useState(0)
   const [rtime,setrtime]=useState(0)
   const [cycling,setcyclic]=useState(0)
@@ -74,6 +79,7 @@ let ob={
 }
 
 localStorage.setItem("cyclic",JSON.stringify(ob))
+setstate(!state)
 alert("Excerise Added Successfully ")
 }
 
@@ -85,6 +91,7 @@ const handlehiking=()=>{
   }
   
   localStorage.setItem("hiking",JSON.stringify(ob))
+  setstate(!state)
   alert("Excerise Added Successfully ")
 }
 
@@ -95,6 +102,7 @@ const handlerunning=()=>{
   }
   
   localStorage.setItem("running",JSON.stringify(ob))
+  setstate(!state)
   alert("Excerise Added Successfully ")
 
 }
@@ -107,6 +115,7 @@ const handleswimming=()=>{
   }
   
   localStorage.setItem("swimming",JSON.stringify(ob))
+  setstate(!state)
   alert("Excerise Added Successfully ")
 }
 
@@ -116,6 +125,7 @@ const handletreadmill=()=>{
     treadmill,ttime
   } 
   localStorage.setItem("treadmill",JSON.stringify(ob))
+  setstate(!state)
   alert("Excerise Added Successfully ")
 
 }
@@ -129,6 +139,7 @@ const handleweight=()=>{
   }
   
   localStorage.setItem("weight",JSON.stringify(ob))
+  setstate(!state)
   alert("Excerise Added Successfully ")
 
 }
@@ -143,84 +154,123 @@ const handleweight=()=>{
   <div className="w-full md:w-1/2 md:pr-12">
     <h1 className="text-3xl md:text-4xl font-bold mb-8">Add Workout of Your Choice</h1>
 
-    <div className="mb-8">
-      <h2 className="text-xl font-bold mb-4">Running</h2>
-      <div className="flex flex-wrap gap-2">
-        <input type="number" placeholder='Enter time in minutes' onChange={(e)=>setrunning(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
+{running1?
+ <div className="mb-8">
+ <h2 className="text-xl font-bold mb-4">Running</h2>
+ <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-6/6" onClick={hanlerun}>Remove</button>
+ </div>:
+ <div className="mb-8">
+ <h2 className="text-xl font-bold mb-4">Running</h2>
+ <div className="flex flex-wrap gap-2">
+   <input type="number" placeholder='Enter time in minutes' onChange={(e)=>setrunning(Number(e.target.value))} className="border text-black border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
+   <input type="number" placeholder='Enter distance in km' onChange={(e)=>setrtime(Number(e.target.value))} className="border  border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />    
+   <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlerunning}>ADD</button>
+  
+ </div>
+</div>
+}
+   
 
-        <input type="number" placeholder='Enter distance in km' onChange={(e)=>setrtime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-       {running1? <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={hanlerun}>Remove</button>:
-        <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlerunning}>ADD</button>}
-       
-      </div>
-    </div>
 
-    <div className="mb-8">
+
+{cyclic1?
+  <div className="mb-8">
       <h2 className="text-xl font-bold mb-4">Cycling</h2>
-      <div className="flex flex-wrap gap-2">
-        <input type="number" placeholder='Enter time in minutes'  onChange={(e)=>setcyclic(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-
-        <input type="number" placeholder='Enter distance in km' onChange={(e)=>setctime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-     {cyclic1? <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlecycle}>Remove</button>:
-     <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlecylic}>ADD</button>}   
-
-       
-
-      </div>
-    </div>
-
-    <div className="mb-8">
-      <h2 className="text-xl font-bold mb-4">Swimming</h2>
-      <div className="flex flex-wrap gap-2">
-        <input type="number" placeholder='Enter time in minutes' onChange={(e)=>setswimming(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-
-        <input type="number" placeholder='Enter Number of Sprints' onChange={(e)=>setctime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-      {swimming1? <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handleswim} >Remove</button>:
-       <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handleswimming} >ADD</button> } 
-      
-      </div>
-    </div>
-
-    <div className="mb-8">
-      <h2 className="text-xl font-bold mb-4">Treadmill</h2>
-      <div className="flex flex-wrap gap-2">
-        <input type="number" placeholder='Enter time in minutes' onChange={(e)=>settreadmill(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-
-        <input type="number" placeholder='Enter distance in km' onChange={(e)=>setttime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-       {treadmill1?<button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handletread}>Remove</button>:
-       <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handletreadmill}>ADD</button>} 
-        
-      </div>
-    </div>
-
+      <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-6/6" onClick={handlecycle}>Remove</button>
+      </div>:
+       <div className="mb-8">
+       <h2 className="text-xl font-bold mb-4">Cycling</h2>
+       <div className="flex flex-wrap gap-2">
+         <input type="number" placeholder='Enter time in minutes'  onChange={(e)=>setcyclic(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black"  />
+ 
+         <input type="number" placeholder='Enter distance in km' onChange={(e)=>setctime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />
     
-    <div className="mb-8">
+      <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlecylic}>ADD</button>   
+ 
+       </div>
+     </div>
+}
+   
+
+
+{swimming1?
+<div className="mb-8">
+<h2 className="text-xl font-bold mb-4">Swimming</h2>
+<button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-6/6" onClick={handleswim} >Remove</button>
+</div>:
+ <div className="mb-8">
+ <h2 className="text-xl font-bold mb-4">Swimming</h2>
+ <div className="flex flex-wrap gap-2">
+   <input type="number" placeholder='Enter time in minutes' onChange={(e)=>setswimming(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />
+   <input type="number" placeholder='Enter Number of Sprints' onChange={(e)=>setctime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />  
+  <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handleswimming} >ADD</button>      
+ </div>
+</div>
+
+}
+
+   
+
+
+{treadmill1?<div className="mb-8">
+      <h2 className="text-xl font-bold mb-4">Treadmill</h2>
+      <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-6/6" onClick={handletread}>Remove</button>
+      </div>:
+ <div className="mb-8">
+ <h2 className="text-xl font-bold mb-4">Treadmill</h2>
+ <div className="flex flex-wrap gap-2">
+   <input type="number" placeholder='Enter time in minutes' onChange={(e)=>settreadmill(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black"  />
+
+   <input type="number" placeholder='Enter distance in km' onChange={(e)=>setttime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />
+ 
+  <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handletreadmill}>ADD</button>
+   
+ </div>
+</div>
+      }
+
+   
+
+    {hiking1? <div className="mb-8">
+    <h1 className="text-xl font-bold mb-4">Hiking</h1>
+    <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-6/6" onClick={handlehiking1}>Remove</button>  
+   
+    </div>: <div className="mb-8">
     <h1 className="text-xl font-bold mb-4">Hiking</h1>
     <div className="flex flex-wrap gap-2">
-      <input type="number" placeholder="Enter time in minutes" onChange={(e)=>sethiking(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-      <input type="number"  placeholder="Enter distance in km" onChange={(e)=>sethiking(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-    {hiking1?<button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlehiking1}>Remove</button>
-    
-  :<button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlehiking}>ADD</button>
-  }  
-      
+      <input type="number" placeholder="Enter time in minutes" onChange={(e)=>sethiking(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />
+      <input type="number"  placeholder="Enter distance in km" onChange={(e)=>sethiking(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />
+      <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handlehiking}>ADD</button>
     </div>
   </div>
+    }
+   
 
-  <div className="mb-8">
+{!weight1?<div className="mb-8">
     <h1 className="text-xl font-bold mb-4">Weight Machines</h1>
     <div className="flex flex-wrap gap-2">
-      <input type="number"  placeholder="Enter time in minutes" onChange={(e)=>setweight(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-      <input type="number"  placeholder="Enter weight in kg" onChange={(e)=>setwtime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3" />
-     {weight1?<button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={hanleweight}>ADD</button>
-     : <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handleweight}>ADD</button>} 
-     
-    </div>
+      <input type="number"  placeholder="Enter time in minutes" onChange={(e)=>setweight(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />
+      <input type="number"  placeholder="Enter weight in kg" onChange={(e)=>setwtime(Number(e.target.value))} className="border border-gray-400 rounded px-4 py-2 w-1/2 md:w-1/3  text-black" />
+     <button className="bg-black text-white rounded px-4 py-2 w-1/2 md:w-1/6" onClick={handleweight}>ADD</button>
+     </div>
   </div>
+     : 
+     <div className="mb-8">
+    <h1 className="text-xl font-bold mb-4">Weight Machines</h1>
+     <button className="bg-red-500 text-white rounded px-4 py-2 w-1/2 md:w-6/6" onClick={hanleweight}>Remove</button>
+     </div>
+     }
+  
+     
+     
+    
 
 
 </div>
  
+</div>
+<div onClick={()=>navigate("/chatot")}>
+  <img  style={{float:'right', width:"87px",fontSize:"70px",marginRight:"-18%",position:"absolute",top:"70%" ,left:"93.3%"}}  src={bot}/>
 </div>
     </div> 
   )

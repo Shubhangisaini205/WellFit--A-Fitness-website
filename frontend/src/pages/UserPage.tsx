@@ -17,11 +17,12 @@ import axios from 'axios'
 import {Chart as ChartJS,BarElement,CategoryScale,LinearScale,Tooltip,Legend} from "chart.js"
 
 import {Bar} from "react-chartjs-2"
+import { useNavigate } from 'react-router-dom'
 
 
 
 const UserPage = () => {
-
+const navigate=useNavigate()
 ChartJS.register(
   BarElement,CategoryScale,LinearScale,Tooltip,Legend
 )
@@ -140,7 +141,8 @@ const options={
           <div className="flex justify-center mt-5">
             <FaRunning className="text-white text-5xl" />
           </div>
-          <h1 className="text-3xl font-bold text-center text-white">Workouts</h1>
+          <div onClick={()=>navigate("/yoga.jsx")}>
+          <h1 className="text-3xl font-bold text-center text-white">Workouts</h1></div>
         </div>
 </div>
           <div className="text-white shadow-lg rounded-lg overflow-hidden p-5 mt-5">
@@ -175,7 +177,7 @@ const options={
             <div className="mt-5">
             <div className="flex justify-between mt-10">
               <h1 className="text-xl font-bold">My Workouts</h1>
-              <button className="bg-red-500 text-white px-3 py-1 rounded-md">Edit</button>
+              <button className="bg-red-500 text-white px-3 py-1 rounded-md" onClick={()=>navigate("/addworkout")} >Edit</button>
             </div>
               <div className="mt-5">
 
