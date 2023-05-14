@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface signinform {
 
     email: string;
@@ -9,6 +11,11 @@ interface signinform {
 }
 
 const Signin: React.FC = () => {
+    const navigate = useNavigate()
+    let isAuth = localStorage.getItem("auth") || false;
+    if(isAuth){
+        isAuth= JSON.parse(isAuth)
+    }
     const [formdata, SetFormdata] = useState<signinform>({
         email: "",
         password: ""
@@ -18,26 +25,45 @@ const Signin: React.FC = () => {
         const { name, value } = e.target;
         SetFormdata({ ...formdata, [name]: value })
     }
-
+    
+    const showToastMessage = () => {
+        toast.success('Login Successfull !', {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
+    const showToastErrorMessage = () => {
+        toast.error('Wrong Credentials !', {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        axios.post(`http://localhost:8080/user/login`, formdata)
+        axios.post(`https://curious-bat-jewelry.cyclic.app/user/login`, formdata)
             .then((res) => {
                 console.log(res.data)
-                localStorage.setItem("token",res.data.token)
-                localStorage.setItem("userDetails",JSON.stringify(res.data.userDetails))
-                alert(res.data.msg)
+                localStorage.setItem("token", res.data.token)
+                localStorage.setItem("userDetails", JSON.stringify(res.data.userDetails))
+                localStorage.setItem("wellfituser", res.data.username)
+                // alert(res.data.msg)
+                localStorage.setItem("auth","true");
+                showToastMessage()
+                setTimeout(() => {
+                    navigate("/")
+                }, 1500)
+
+            }).catch((err)=>{
+                showToastErrorMessage()
             })
     }
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100 text-black">
+        <div className="flex items-center justify-center min-h-screen  text-black" >
             <div
-                className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0"
+                className="relative flex flex-col m-6 space-y-8  shadow-2xl rounded-2xl md:flex-row md:space-y-0"
             >
                 {/* <!-- left side --> */}
-                <div className="flex flex-col justify-center p-8 md:p-14">
+                <div className="flex flex-col justify-center p-8 md:p-14 text-white">
                     <span className="mb-3 text-4xl font-bold text-center ">Welcome back to WellFit</span>
-                    <span className="font-light text-gray-400 mb-8 text-center " >
+                    <span className="font-light text-teal-400 mb-8 text-center " >
                         Welcom back! Please enter your details
                     </span>
                     <form onSubmit={handleSubmit}>
@@ -46,7 +72,7 @@ const Signin: React.FC = () => {
                             <input
                                 type="email"
                                 placeholder="Enter you email address"
-                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 text-black"
                                 name="email"
                                 id="email"
                                 value={formdata.email}
@@ -62,7 +88,7 @@ const Signin: React.FC = () => {
                                 id="password"
                                 value={formdata.password}
                                 onChange={handleInputChange}
-                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 text-black"
                             />
                         </div>
                         <div className="flex justify-between w-full py-4">
@@ -74,28 +100,28 @@ const Signin: React.FC = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300"
+                            className="w-full bg-black border border-gray-300 text-white p-2 rounded-lg mb-6 hover:bg-teal-400 hover:text-black hover:border hover:border-gray-300"
                         >
                             Sign in
                         </button>
                     </form>
                     <button
-                        className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white"
+                        className="w-full bg-teal-400 text-black p-2 rounded-lg mb-6 hover:bg-black hover:text-white hover:border hover:border-gray-300"
                     >
                         <img src="https://cdn.monday.com/images/logo_google_v2.svg" alt="img" className="w-4 h-4 inline mr-2" />
                         Sign in with Google
                     </button>
-                    <div className="text-center text-gray-400 hover:cursor-pointer">
+                    <div className="text-center text-teal-400 hover:cursor-pointer">
                         Dont'have an account?{" "}
                         <Link to="/signup">
-                            <span className="font-bold text-black">Sign up for free</span>
+                            <span className="font-bold text-white">Sign up for free</span>
                         </Link>
                     </div>
                 </div>
                 {/* <!-- right side --> */}
                 <div className="relative">
                     <img
-                        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Zml0bmVzcyUyMG1wZGVsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                        src="https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="img"
                         className="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"
                     />
@@ -110,7 +136,7 @@ const Signin: React.FC = () => {
                 </div>
             </div >
 
-
+            <ToastContainer autoClose={2000}/>
         </div >
     );
 };

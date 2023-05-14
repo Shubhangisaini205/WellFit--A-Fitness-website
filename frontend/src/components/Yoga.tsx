@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react'
-import Pan1 from "../images/Pan1.mp4"
-import Pan2 from "../images/pan2.mp4"
-import Pan3 from "../images/pan3.mp4"
-import Pan4 from "../images/pan4.mp4"
+// import Pan1 from "../images/Pan1.mp4"
+// import Pan2 from "../images/pan2.mp4"
+// import Pan3 from "../images/pan3.mp4"
+// import Pan4 from "../images/pan4.mp4"
+
 
 import * as Aos from "aos";  
 import "aos/dist/aos.css";
+
+// import Aos from "aos"
+// import "aos/dist/aos.css"
 
 
  
@@ -13,14 +17,16 @@ import "aos/dist/aos.css";
 
  
 const Yoga = () => {
+
     useEffect(()=>{ 
         Aos.init({duration:1000})
     },[])
+
     return (
         <div>
 <div className="flex flex-col lg:flex-row items-center justify-between mx-4 lg:mx-10 lg:my-20">
     <video className="w-full lg:w-1/3 lg:mr-8"  controls data-aos="fade-right">
-        <source src={Pan1} />
+        <source src={""} />
     </video>
     <div className="w-full lg:w-2/3 lg:text-left text-center mt-8 lg:mt-0 text-white" data-aos="fade-left">
         <h2 className="text-3xl lg:text-5xl font-bold mb-8 lg:mb-12 text-left">Do Not Make Excuses</h2>
@@ -38,7 +44,7 @@ const Yoga = () => {
   </div>
   <div className="w-full md:w-1/2 lg:w-5/12" data-aos="fade-left">
     <video className="w-full" controls >
-      <source src={Pan2} />
+      <source src={""} />
     </video>
   </div>
 </div>
@@ -46,7 +52,7 @@ const Yoga = () => {
 
 <div className="flex flex-col md:flex-row justify-around items-center md:items-stretch px-4 md:px-12 lg:px-24 py-12 md:py-24">
   <video className="w-full md:w-1/3 lg:w-1/4" controls  data-aos="fade-right">
-    <source src={Pan3} />
+    <source src={""} />
   </video>
   <div className="w-full md:w-2/3 lg:w-3/4 md:text-left text-center text-white my-8 md:my-0" data-aos="fade-left">
     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8 md:mb-12 md:text-left">Importance Of Meditation</h2>
@@ -72,7 +78,7 @@ const Yoga = () => {
   </div>
   <div className="w-full md:w-1/2 lg:w-5/12" data-aos="fade-left">
     <video controls  className="w-full">
-      <source src={Pan4} />
+      <source src={""} />
     </video>
   </div>
 </div>

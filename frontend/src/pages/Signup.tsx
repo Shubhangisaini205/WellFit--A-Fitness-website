@@ -1,7 +1,9 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { RegisterUser } from "../redux/AuthReducer.ts/action";
 import { Action } from "redux";
 
@@ -19,6 +21,7 @@ interface SignupForm {
 }
 
 const Signup: React.FC = () => {
+    const navigate = useNavigate()
     const [formdata, setFormdata] = useState<SignupForm>({
         name: "",
         email: "",
@@ -30,8 +33,12 @@ const Signup: React.FC = () => {
         password: ""
     });
 
-    const dispatch = useDispatch();
 
+    const showToastMessage = () => {
+        toast.success('Successfully registered!!!', {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormdata({ ...formdata, [name]: value });
@@ -41,24 +48,29 @@ const Signup: React.FC = () => {
         e.preventDefault();
         // dispatch(RegisterUser(formdata));
         // console.log(formdata)
-        axios.post(`http://localhost:8080/user/register`, formdata)
+
+        axios.post(`https://curious-bat-jewelry.cyclic.app/user/register`, formdata)
             .then((res) => {
                 console.log(res.data)
-                alert("OK")
+                showToastMessage()
+                setTimeout(() => {
+                    navigate("/signin")
+                }, 1500)
+
             })
-       
+
 
 
     };
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100 text-black">
+        <div className="flex items-center justify-center min-h-screen  text-black">
             <div
-                className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0"
+                className="relative flex flex-col m-6 space-y-8  shadow-2xl rounded-2xl md:flex-row md:space-y-0"
             >
                 {/* <!-- left side --> */}
-                <div className="flex flex-col justify-center p-8 md:p-14">
+                <div className="flex flex-col justify-center p-8 md:p-14 text-white">
                     <span className="mb-3 text-4xl font-bold text-center ">Welcome to WellFit</span>
-                    <span className="font-light text-gray-400 mb-8 text-center " >
+                    <span className="font-light text-teal-400 mb-8 text-center " >
                         Please Create your account!
                     </span>
                     <form onSubmit={handleSubmit}>
@@ -67,7 +79,7 @@ const Signup: React.FC = () => {
                             <input
                                 type="text"
                                 placeholder="Enter your full name"
-                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 text-black"
                                 name="name"
                                 id="name"
                                 required
@@ -80,7 +92,7 @@ const Signup: React.FC = () => {
                             <input
                                 type="email"
                                 placeholder="Enter your email address"
-                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 text-black"
                                 name="email"
                                 id="email"
                                 required
@@ -98,7 +110,8 @@ const Signup: React.FC = () => {
                                     placeholder="Age"
                                     id="Age"
                                     required
-                                    className="w-20 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                    min="16"
+                                    className="w-20 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-black text-black"
                                     value={formdata.age}
                                     onChange={handleInputChange}
                                 />
@@ -112,7 +125,8 @@ const Signup: React.FC = () => {
                                     required
                                     placeholder="Height"
                                     id="Height"
-                                    className="w-20 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                    min="100"
+                                    className="w-20 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-black text-black"
                                     value={formdata.height}
                                     onChange={handleInputChange}
                                 />
@@ -126,7 +140,8 @@ const Signup: React.FC = () => {
                                     required
                                     placeholder="Weight"
                                     id="Weight"
-                                    className="w-20 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                    min="30"
+                                    className="w-20 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-black text-black"
                                     value={formdata.weight}
                                     onChange={handleInputChange}
                                 />
@@ -180,7 +195,7 @@ const Signup: React.FC = () => {
                                 id="password"
                                 value={formdata.password}
                                 onChange={handleInputChange}
-                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 text-black"
                             />
                         </div>
 
@@ -193,12 +208,12 @@ const Signup: React.FC = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300"
+                            className="w-full bg-black border border-gray-300 text-white p-2 rounded-lg mb-6 hover:bg-teal-400 hover:text-black hover:border hover:border-gray-300"
                         >
                             Sign up
                         </button>
                         <button
-                            className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white"
+                            className="w-full bg-teal-400 text-black p-2 rounded-lg mb-6 hover:bg-black hover:text-white hover:border hover:border-gray-300"
                         >
                             <img src="https://cdn.monday.com/images/logo_google_v2.svg" alt="img" className="w-4 h-4 inline mr-2" />
                             Sign up with Google
@@ -207,14 +222,14 @@ const Signup: React.FC = () => {
                     <div className="text-center text-gray-400 hover:cursor-pointer">
                         Already have an account?{" "}
                         <Link to="/signin">
-                            <span className="font-bold text-black">Sign in from here</span>
+                            <span className="font-bold text-teal-400">Sign in from here</span>
                         </Link>
                     </div>
                 </div>
                 {/* <!-- right side --> */}
                 <div className="relative">
                     <img
-                        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Zml0bmVzcyUyMG1wZGVsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                        src="https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=600"
                         alt="img"
                         className="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"
                     />
@@ -229,7 +244,7 @@ const Signup: React.FC = () => {
                 </div>
             </div>
 
-
+            <ToastContainer autoClose={2000} />
         </div>
     );
 };
