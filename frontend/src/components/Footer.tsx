@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from "../Assests/WellLogo.png"
 
 const Footer = () => {
   return (
@@ -8,9 +9,7 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
               <a href="/" className="flex items-center">
-
-                  {/* <img src="" className="h-8 mr-3" alt="FlowBite Logo" /> */}
-
+                  <img src={logo} className="h-8 mr-3" alt="FlowBite Logo" />
                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">WellFit</span>
               </a>
           </div>

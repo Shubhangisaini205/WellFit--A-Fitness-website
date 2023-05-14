@@ -3,9 +3,12 @@ import Navbar from '../components/Navbar'
 import Banner from '../components/Banner'
 import Footer from '../components/Footer'
 
-
+import bot from "../images/chatbot.png"
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
+  const navigate = useNavigate()
+
   return (
     <div>
       <Banner />
@@ -142,6 +145,9 @@ function Home() {
             <h1 className='text-white'>I've been using WellFit for a few months now, and overall, I've had a positive experience with the app. The workouts are challenging but not overwhelming, and I appreciate the variety of classes offered, from yoga to HIIT to strength training.</h1>
           </div>
         </div>
+      </div>
+      <div onClick={() => navigate("/expert")}>
+        <img style={{ float: 'right', width: "87px", fontSize: "70px", marginRight: "-18%", position: "fixed", top: "70%", left: "93.3%" }} src={bot} />
       </div>
 
     </div>

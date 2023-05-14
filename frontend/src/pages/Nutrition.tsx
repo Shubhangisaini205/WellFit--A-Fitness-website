@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Img5 from "../Assests/Img5.jpg"
 import useDebounce from "../hook/useDebounce"
 import NutritientsIntake from './NutritientsIntake'
-import Navbar from '../components/Navbar'
+import bot from "../images/chatbot.png"
+import { useNavigate } from 'react-router-dom'
 interface searchList {
     calories: number
     carbohydrates_total_g: number
@@ -18,6 +19,7 @@ interface searchList {
     sugar_g: number
 }
 function Nutriton() {
+    const navigate = useNavigate()
     const [Query, setQuery] = useState("");
     const [list, setList] = useState<searchList[]>([]);
     const searchResults = useDebounce(Query, 1000)
@@ -30,11 +32,11 @@ function Nutriton() {
             }
         }).then((res) => res.json())
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 setList(res)
             })
     }, [searchResults])
-    console.log("list", list)
+    // console.log("list", list)
 
     return (
         <div>
@@ -145,6 +147,9 @@ function Nutriton() {
                     </div>
                 </div>
                 <NutritientsIntake />
+            </div>
+            <div onClick={() => navigate("/expert")} className='bg-white'>
+                <img style={{ float: 'right', width: "87px", fontSize: "70px", marginRight: "-18%", position: "fixed", top: "70%", left: "93.3%" }} src={bot} />
             </div>
         </div>
 

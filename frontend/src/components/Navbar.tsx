@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo from "../Assests/WellLogo.png"
 function Navbar() {
   const [toggle, setToggle] = useState<boolean>(false)
   const [ison, setIsOn] = useState<boolean>(false);
@@ -33,11 +34,12 @@ function Navbar() {
 
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center">
-          {/* <img
-            src="https://flowbite.com/docs/images/logo.svg"
+          <img
+
+            src={logo}
             className="h-8 mr-3"
-            alt="Flowbite Logo"
-          /> */}
+            alt=" Logo"
+          />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             WellFit
           </span>
@@ -147,23 +149,24 @@ function Navbar() {
         style={{ display: ison ? "block" : "none" }}
         className="absolute top-19  border-2 w-full bg-white p-8 rounded-2xl ml-5"
       >
-        <a href="#">
-          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Home</p>
+        <a href="/">
+          <p className="p-2  font-bold bg-teal-500 hover:text-white  rounded-xl">Home</p>
         </a>
-        <a href="#">
-          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Blogs</p>
+        <a href="/blogs">
+          <p className="p-2 mt-5 font-bold bg-teal-500 hover:text-white  rounded-xl">Blogs</p>
         </a>
-        <a href="#">
-          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Nutrition</p>
+        <a href="/nutrition">
+          <p className="p-2 mt-5 font-bold bg-teal-500 hover:text-white  rounded-xl">Nutrition</p>
         </a>
-        <a href="#">
-          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Workout</p>
+        {isAuth ?
+          <a href="/exercise">
+            <p className="p-2 mt-5 font-bold bg-teal-500 hover:text-white  rounded-xl">Exercise</p>
+          </a> : null}
+        <a href="/customexercise">
+          <p className="p-2 mt-5 font-bold bg-teal-500 hover:text-white  rounded-xl">Workout</p>
         </a>
-        <a href="#">
-          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">About</p>
-        </a>
-        <a href="#">
-          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Contact</p>
+        <a href="/yoga">
+          <p className="p-2 mt-5 font-bold bg-teal-500 hover:text-white  rounded-xl">Yoga</p>
         </a>
       </div>
       <ToastContainer autoClose={2000} />

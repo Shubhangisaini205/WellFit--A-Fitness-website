@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +12,7 @@ interface signinform {
 
 const Signin: React.FC = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     let isAuth = localStorage.getItem("auth") || false;
     if(isAuth){
         isAuth= JSON.parse(isAuth)
@@ -40,7 +41,7 @@ const Signin: React.FC = () => {
         e.preventDefault()
         axios.post(`https://curious-bat-jewelry.cyclic.app/user/login`, formdata)
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("userDetails", JSON.stringify(res.data.userDetails))
                 localStorage.setItem("wellfituser", res.data.username)
@@ -48,7 +49,7 @@ const Signin: React.FC = () => {
                 localStorage.setItem("auth","true");
                 showToastMessage()
                 setTimeout(() => {
-                    navigate("/")
+                    navigate(location.state, {replace:true})
                 }, 1500)
 
             }).catch((err)=>{

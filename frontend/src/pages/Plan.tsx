@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Footer from "../components/Footer";
-
+import bot from "../images/chatbot.png"
+import { useNavigate } from 'react-router-dom'
 interface WorkoutPlan {
     name?: string,
     description?: string,
@@ -132,6 +132,7 @@ const Saturday = [
 
 
 function Plan() {
+    const navigate = useNavigate()
     const [day1, setDay1] = useState<WorkoutPlan[]>([])
     const [day2, setDay2] = useState<WorkoutPlan[]>([])
     const [day3, setDay3] = useState<WorkoutPlan[]>([])
@@ -298,6 +299,13 @@ function Plan() {
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className="mb-20">
+                <p className="mt-6 font-bold text-2xl leading-8 text-teal-400 text-center">
+                    NOTE: Day-7 is Rest Day which is must. Do Repeat this plan for next 4 weeks for better results.</p>
+            </div>
+            <div onClick={() => navigate("/expert")}>
+                <img style={{ float: 'right', width: "87px", fontSize: "70px", marginRight: "-18%", position: "fixed", top: "70%", left: "93.3%" }} src={bot} />
             </div>
 
         </div>

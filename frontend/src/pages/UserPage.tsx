@@ -22,6 +22,10 @@ import { useNavigate } from 'react-router-dom'
 
 
 const UserPage = () => {
+
+  let loggeduser = localStorage.getItem("wellfituser")
+  let userDetails= JSON.parse(localStorage.getItem("userDetails") as string) || null;
+  // console.log(userDetails)
 const navigate=useNavigate()
 ChartJS.register(
   BarElement,CategoryScale,LinearScale,Tooltip,Legend
@@ -35,7 +39,7 @@ let hiking = JSON.parse(localStorage.getItem("hiking") as string) || null;
 let swimming = JSON.parse(localStorage.getItem("swimming") as string) || null;
 let cyclic = JSON.parse(localStorage.getItem("cyclic") as string) || null;
 
-console.log(running,treadmill,weight,hiking,swimming,cyclic)
+// console.log(running,treadmill,weight,hiking,swimming,cyclic)
 
 
 
@@ -64,9 +68,9 @@ let targetforsteps=((counter/6000)*100).toFixed(4)
 let calorietarget: number = ((colories/1700)*100);
 let chartdata: number = Math.floor((calorietarget / 100) * 170);
 
-console.log(chartdata,"line 81")
+// console.log(chartdata,"line 81")
 chartdata=chartdata/17
-console.log(chartdata,"line 83")
+// console.log(chartdata,"line 83")
 const handlecycle=()=>{
   localStorage.removeItem("cyclic")
   setstate(!state)
@@ -102,7 +106,7 @@ const data={
   labels:["Day before Yesterday","Yesterday","Today"],
   datasets:[
     {
-      labels:"369",
+      label:"Achieved",
       data:[3,6,chartdata],
       backgroundColor:"aqua",
       borderColor:"black",
@@ -110,7 +114,7 @@ const data={
 
     },
     { 
-      labels:"369",
+      label:"Target",
       data:[4,6,10],
       backgroundColor:"grey",
       borderColor:"black",
@@ -120,9 +124,9 @@ const data={
   ]
 }
 
-const options={
+// const options={
 
-}
+// }
 
     return (
       <div>
@@ -141,7 +145,7 @@ const options={
           <div className="flex justify-center mt-5">
             <FaRunning className="text-white text-5xl" />
           </div>
-          <div onClick={()=>navigate("/yoga.jsx")}>
+          <div onClick={()=>navigate("/exercise")}>
           <h1 className="text-3xl font-bold text-center text-white">Workouts</h1></div>
         </div>
 </div>
@@ -150,18 +154,18 @@ const options={
             <div className="flex justify-between mt-5">
               <div className="flex items-center">
                 <FaUserCircle className="text-gray-500 text-2xl mr-2" />
-                <span className="text-lg font-medium">John Doe</span>
+                <span className="text-lg font-medium">{loggeduser}</span>
               </div>
               {/* <button className="bg-blue-500 text-white px-3 py-1 rounded-md">Edit</button> */}
             </div>
             <div className="flex justify-between mt-3">
               <div className="flex items-center">
                 <FaRuler className="text-white-500 text-2xl mr-2" />
-                <span className="text-lg font-medium">Height: 175 cm</span>
+                <span className="text-lg font-medium">Height: {userDetails.height} cm</span>
               </div>
               <div className="flex items-center">
                 <FaWeight className="text-white-500 text-2xl mr-2" />
-                <span className="text-lg font-medium">Weight: 75 kg</span>
+                <span className="text-lg font-medium">Weight: {userDetails.weight} kg</span>
               </div>
             </div>
             <div className="flex justify-between mt-3">
@@ -298,7 +302,6 @@ const options={
 <div className="w-4/5 mx-auto mt-5">
   <Bar
     data={data}
-    options={options}
   ></Bar>
 </div>
 

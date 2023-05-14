@@ -51,7 +51,7 @@ const Signup: React.FC = () => {
 
         axios.post(`https://curious-bat-jewelry.cyclic.app/user/register`, formdata)
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 showToastMessage()
                 setTimeout(() => {
                     navigate("/signin")

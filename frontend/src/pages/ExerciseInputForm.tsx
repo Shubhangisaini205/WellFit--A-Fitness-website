@@ -3,6 +3,8 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import bot from "../images/chatbot.png"
+
 // interface ExerciseForm {
 //     target:string,
 //     difficulty:string,
@@ -57,7 +59,7 @@ export default function ExerciseInputForm() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         setSearchParams(formdata)
-        console.log(obj, "x")
+        // console.log(obj, "x")
         axios.get("https://curious-bat-jewelry.cyclic.app/workouts", { headers, params })
             .then((res) => {
 
@@ -66,7 +68,7 @@ export default function ExerciseInputForm() {
                     delete res.data[i]["id"]
                 }
 
-                console.log(res, "y");
+                // console.log(res, "y");
                 if (res.data.msg == "Please login to access this function!!!") {
                     navigate("/signin")
                     return (
@@ -80,19 +82,19 @@ export default function ExerciseInputForm() {
                 })
                     .then((res) => res.json())
                     .then((res) => {
-                        console.log(res, "POST SUCCESFULL");
+                        // console.log(res, "POST SUCCESFULL");
                         showToastMessage()
                         navigate("/exercise")
                     })
                     .catch((err) => {
 
-                        console.log(err, "ERROR");
+                        // console.log(err, "ERROR");
                     })
             })
             .catch((err) => {
                 alert(err.response.data.msg)
                 // console.log(err)
-                console.log(err, "CATCH ERROR");
+                // console.log(err, "CATCH ERROR");
             })
     }
     return (
@@ -180,8 +182,7 @@ export default function ExerciseInputForm() {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
+                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 Submit
                             </button>
                         </div>
@@ -189,6 +190,9 @@ export default function ExerciseInputForm() {
                 </div>
             </div>
             <ToastContainer autoClose={2000} />
+            <div onClick={() => navigate("/expert")}>
+                <img style={{ float: 'right', width: "87px", fontSize: "70px", marginRight: "-18%", position: "fixed", top: "70%", left: "93.3%" }} src={bot} />
+            </div>
         </>
     )
 }

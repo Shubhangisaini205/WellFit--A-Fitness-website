@@ -10,6 +10,9 @@ import Exercise from '../pages/Exercise'
 import Plan from '../pages/Plan'
 import Yoga from '../components/Yoga'
 import PrivateRoute from './PrivateRoute'
+import UserPage from '../pages/UserPage'
+import Addworkout from '../components/Addworkout'
+import { Chatbot } from '../components/Chatbot'
 
 function Allroutes() {
   return (
@@ -22,6 +25,9 @@ function Allroutes() {
       <Route path="/nutrition" element={<Nutriton />} />
       <Route path='/customexercise' element={<ExerciseInputForm />} />
       <Route path='/exercise' element={<Exercise />} />
+      <Route path='/goals' element={<PrivateRoute><UserPage/></PrivateRoute>} />
+      <Route path='/addworkout' element={<PrivateRoute><Addworkout/></PrivateRoute>} />
+      <Route path='/expert' element={<Chatbot/>} />
       <Route path='/plan' element={<PrivateRoute><Plan /></PrivateRoute>} />
     </Routes>
   )

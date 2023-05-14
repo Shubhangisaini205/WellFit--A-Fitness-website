@@ -29,14 +29,14 @@ function Exercise() {
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
         })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 setProducts(res.data);
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             })
     }, [])
-    console.log(products);
+    // console.log(products);
     return (
         <div className='text-white mr-5 ml-5 m-auto mb-40'>
             <h1 className="text-4xl font-bold mb-4 text-center mt-5 ">Workout Exercises</h1>
