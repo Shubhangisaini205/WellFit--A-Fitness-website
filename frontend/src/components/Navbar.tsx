@@ -103,25 +103,25 @@ function Navbar() {
       </div>
       <div
         style={{ display: ison ? "block" : "none" }}
-        className="absolute top-20 right-5 border-2 w-full bg-white p-8 rounded-lg "
+        className="absolute top-19  border-2 w-full bg-white p-8 rounded-2xl ml-5"
       >
         <a href="#">
-          <p className="p-2 font-bold">Home</p>
+          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Home</p>
         </a>
         <a href="#">
-          <p className="p-2 font-bold">Blogs</p>
+          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Blogs</p>
         </a>
         <a href="#">
-          <p className="p-2 font-bold">Nutrition</p>
+          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Nutrition</p>
         </a>
         <a href="#">
-          <p className="p-2 font-bold">Workout</p>
+          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Workout</p>
         </a>
         <a href="#">
-          <p className="p-2 font-bold">About</p>
+          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">About</p>
         </a>
         <a href="#">
-          <p className="p-2 font-bold">Contact</p>
+          <p className="p-2 font-bold hover:bg-teal-500 hover:text-white  rounded-xl">Contact</p>
         </a>
       </div>
     </nav>
