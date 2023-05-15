@@ -14,8 +14,8 @@ const Signin: React.FC = () => {
     const navigate = useNavigate()
     const location = useLocation()
     let isAuth = localStorage.getItem("auth") || false;
-    if(isAuth){
-        isAuth= JSON.parse(isAuth)
+    if (isAuth) {
+        isAuth = JSON.parse(isAuth)
     }
     const [formdata, SetFormdata] = useState<signinform>({
         email: "",
@@ -26,7 +26,7 @@ const Signin: React.FC = () => {
         const { name, value } = e.target;
         SetFormdata({ ...formdata, [name]: value })
     }
-    
+
     const showToastMessage = () => {
         toast.success('Login Successfull !', {
             position: toast.POSITION.TOP_CENTER
@@ -46,13 +46,17 @@ const Signin: React.FC = () => {
                 localStorage.setItem("userDetails", JSON.stringify(res.data.userDetails))
                 localStorage.setItem("wellfituser", res.data.username)
                 // alert(res.data.msg)
-                localStorage.setItem("auth","true");
+                localStorage.setItem("auth", "true");
                 showToastMessage()
                 setTimeout(() => {
-                    navigate(location.state, {replace:true})
+                    if (location.state) {
+                        navigate(location.state, { replace: true })
+                    } else {
+                        navigate("/")
+                    }
                 }, 1500)
 
-            }).catch((err)=>{
+            }).catch((err) => {
                 showToastErrorMessage()
             })
     }
@@ -137,7 +141,7 @@ const Signin: React.FC = () => {
                 </div>
             </div >
 
-            <ToastContainer autoClose={2000}/>
+            <ToastContainer autoClose={2000} />
         </div >
     );
 };
