@@ -4,46 +4,24 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import bot from "../images/chatbot.png"
-
-// interface ExerciseForm {
-//     target:string,
-//     difficulty:string,
-//     category:string
-// }
-
-
 export default function ExerciseInputForm() {
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
-    // let userDetails=(localStorage.getItem("userDetails"));
-    // if(userDetails){
-    //     userDetails=JSON.parse(userDetails)
-    //     const {_id,name}=userDetails
-    // }
 
-    // const [category,setCategory]=useState(searchParams.get("category") || "")
-    // const [target,setTarget]=useState(searchParams.get("target") || "")
-    // const [difficulty,setDifficulty]=useState(searchParams.get("difficulty") || "")
+
     const [formdata, setFormdata] = useState({
-        target: "",
-        difficulty: "",
-        category: ""
+        target:searchParams.get("target") || "",
+        difficulty: searchParams.get("difficulty") || "",
+        category:searchParams.get("category") || ""
     });
-    let obj = {
-        target: searchParams.get("target"),
-        difficulty: searchParams.get("difficulty"),
-        category: searchParams.get("category")
-    }
 
+    
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormdata({ ...formdata, [name]: value });
     };
-    const headers: AxiosRequestConfig['headers'] = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-    };
+    
     const showToastErrorMessage = () => {
         toast.error('Please login to access this function!!!', {
             position: toast.POSITION.TOP_CENTER
@@ -54,15 +32,20 @@ export default function ExerciseInputForm() {
             position: toast.POSITION.TOP_CENTER
         });
     };
+    const headers: AxiosRequestConfig['headers'] = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    };
 
-    const params: AxiosRequestConfig['params'] = obj
+    const params: AxiosRequestConfig['params'] = formdata
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         setSearchParams(formdata)
         // console.log(obj, "x")
         axios.get("https://curious-bat-jewelry.cyclic.app/workouts", { headers, params })
             .then((res) => {
-
+               
                 for (let i = 0; i < res.data.length; i++) {
                     delete res.data[i]["_id"]
                     delete res.data[i]["id"]
@@ -79,6 +62,7 @@ export default function ExerciseInputForm() {
                     method: "POST",
                     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                     body: JSON.stringify(res.data)
+                
                 })
                     .then((res) => res.json())
                     .then((res) => {
