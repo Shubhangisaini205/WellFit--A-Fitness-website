@@ -11,17 +11,17 @@ export default function ExerciseInputForm() {
 
 
     const [formdata, setFormdata] = useState({
-        target:searchParams.get("target") || "",
+        target: searchParams.get("target") || "",
         difficulty: searchParams.get("difficulty") || "",
-        category:searchParams.get("category") || ""
+        category: searchParams.get("category") || ""
     });
 
-    
+
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormdata({ ...formdata, [name]: value });
     };
-    
+
     const showToastErrorMessage = () => {
         toast.error('Please login to access this function!!!', {
             position: toast.POSITION.TOP_CENTER
@@ -29,6 +29,11 @@ export default function ExerciseInputForm() {
     };
     const showToastMessage = () => {
         toast.success('Exercise Added!!', {
+            position: toast.POSITION.TOP_CENTER
+        });
+    };
+    const showToastnotFoundMessage = () => {
+        toast.info('No workouts found for these preferences. Please select different preferences !!', {
             position: toast.POSITION.TOP_CENTER
         });
     };
@@ -45,35 +50,42 @@ export default function ExerciseInputForm() {
         // console.log(obj, "x")
         axios.get("https://curious-bat-jewelry.cyclic.app/workouts", { headers, params })
             .then((res) => {
-               
-                for (let i = 0; i < res.data.length; i++) {
-                    delete res.data[i]["_id"]
-                    delete res.data[i]["id"]
+
+                if (res.data.length === 0) {
+                    showToastnotFoundMessage()
+                } else {
+
+                    for (let i = 0; i < res.data.length; i++) {
+                        delete res.data[i]["_id"]
+                        delete res.data[i]["id"]
+                    }
+
+                    // console.log(res, "y");
+                    if (res.data.msg == "Please login to access this function!!!") {
+                        navigate("/signin")
+                        return (
+                            showToastErrorMessage()
+                        )
+                    }
+                    fetch("https://curious-bat-jewelry.cyclic.app/exercise/add", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                        body: JSON.stringify(res.data)
+
+                    })
+                        .then((res) => res.json())
+                        .then((res) => {
+                            // console.log(res, "POST SUCCESFULL");
+                            showToastMessage()
+                            navigate("/exercise")
+                        })
+                        .catch((err) => {
+
+                            // console.log(err, "ERROR");
+                        })
                 }
 
-                // console.log(res, "y");
-                if (res.data.msg == "Please login to access this function!!!") {
-                    navigate("/signin")
-                    return (
-                        showToastErrorMessage()
-                    )
-                }
-                fetch("https://curious-bat-jewelry.cyclic.app/exercise/add", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-                    body: JSON.stringify(res.data)
-                
-                })
-                    .then((res) => res.json())
-                    .then((res) => {
-                        // console.log(res, "POST SUCCESFULL");
-                        showToastMessage()
-                        navigate("/exercise")
-                    })
-                    .catch((err) => {
 
-                        // console.log(err, "ERROR");
-                    })
             })
             .catch((err) => {
                 alert(err.response.data.msg)
@@ -173,7 +185,7 @@ export default function ExerciseInputForm() {
                     </form>
                 </div>
             </div>
-            <ToastContainer autoClose={2000} />
+            <ToastContainer autoClose={3000} />
             <div onClick={() => navigate("/expert")}>
                 <img style={{ float: 'right', width: "87px", fontSize: "70px", marginRight: "-18%", position: "fixed", top: "70%", left: "93.3%" }} src={bot} />
             </div>
